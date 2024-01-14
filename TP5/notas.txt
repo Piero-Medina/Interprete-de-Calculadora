@@ -1,0 +1,10 @@
+por el momento generamos el ejecutable de esta forma
+
+flex lexico.l                                                         -> generamos el lexico.c y lexico.h
+bison parser.y                                                        -> generamos el parser.c y parser.h
+gcc -o calculadora main.c scanner.c parser.c calc.c -lfl -lm          -> generamos el ejecutable con nombre calculadora 
+
+para ejecutarlo
+
+./calculadora
+

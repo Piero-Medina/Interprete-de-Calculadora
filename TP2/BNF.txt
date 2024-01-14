@@ -1,0 +1,126 @@
+BNF LEXICA
+
+<token> ::=
+          palabraReservada
+          identificador
+          constante
+          operador
+          
+<palabraReservada> ::=
+                  var
+                  cte
+                  salir
+		  funcion
+
+  <funcion> ::= one for
+	  sin cos tan asin acos atan sqrt log
+
+<identificador> ::=
+     letra
+     identificador dígito
+     identificador letra
+
+<constante> ::=
+          constanteEntera
+          constanteReal
+ 
+  <constanteEntera> ::=
+            digito
+            constanteEntera digito
+  
+  <constanteReal> ::=
+            constanteFracional
+            constanteFracional parteExponecial
+            constanteEntera parteExponecial 
+
+  <constanteFraccional> ::=
+            . constanteEntera
+            constanteEntera . constanteEntera
+            constanteEntera .
+
+  <parteExponencial> ::=
+            e constanteEntera
+            e signo constanteEntera
+            E constanteEntera
+            E signo constanteEntera
+  
+  <signo> ::= one for
+        + -  
+
+<operador> ::= 
+        operadorAritmetico
+        operadorAsignacion
+
+  <operadorAritmetico> ::= one for
+          + - * / ^
+ 
+  <operadorAsignacion> ::= one for
+         = += -= *= /= 
+
+
+  <letra> ::= one for
+         a  b  c  d  e  f  g  h  i  j  k  l  m 
+         n  o  p  q  r  s  t  u  v  w  x  y  z
+         A  B  C  D  E  F  G  H  I  J  K  L  M
+         N  O  P  Q  R  S  T  U  V  W  X  Y  Z
+
+  <dígito> ::= one for 
+           0 1 2 3 4 5 6 7 8 9 
+
+----------------------------------------------------------------------------------------------------
+BNF SINTACTICA
+
+<sesionDeCalculadora> ::=
+                listaDeSentencias salir
+                salir
+  
+<listaDeSentencias> ::=
+              sentencia \n
+              listaDeSentencias Sentencia \n
+
+<sentencia> ::=
+          expresion  
+          declaracion
+          identificador
+
+<expresion> ::= 
+          asignacion               
+          expresion-aditiva
+  
+  <asignacion> ::=
+             identificador  = expresion
+             identificador += expresion
+             identificador -= expresion
+             identificador *= expresion
+             identificador /= espresion
+
+<declaracion> ::= 
+           var identificador
+           var identificador = expresion
+           cte identificador = expresion
+
+  
+  <expresion-aditiva> ::=
+            expresion-multiplicativa
+            expresion-aditiva + expresion-multiplicativa
+            expresion-aditiva - expresion-multiplicativa
+
+  <expresion-multiplicativa> ::=
+            expresion-unaria
+            expresion-multiplicativa * expresion-unaria
+            expresion-multiplicativa / expresion-unaria
+
+  <expresion-unaria> ::=
+            expresion-potenciativa
+            - expresion-potenciativa
+
+  <expresion-potenciativa> ::= 
+            expresion-Primaria
+            expresion-Primaria ^ expresion-potenciativa          
+
+  <expresion-Primaria> ::= 
+            identificador
+            constante
+            (expresion)
+            funcion(expresion)
+
